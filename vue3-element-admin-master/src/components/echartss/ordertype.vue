@@ -4,17 +4,18 @@
 
 <script>
 import * as echarts from 'echarts'
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue'
 
 export default {
-  setup() {
-    let myChart;
+  props: ['name1', 'saleTotal'],
+  setup(props) {
+    let myChart
     onMounted(() => {
-      myChart = echarts.init(document.getElementById('orderType'));
+      myChart = echarts.init(document.getElementById('orderType'))
       let readyBin1Option = {
         title: {
-          text: '用户投资类型',
-          subtext: '纯属虚构',
+          text: '产品销量',
+          subtext: '蛋糕',
           x: 'center',
         },
         tooltip: {
@@ -24,7 +25,7 @@ export default {
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['基金', '股票', '债券', '储蓄', '期货'],
+          data: props.name1,
         },
         series: [
           {
@@ -33,11 +34,21 @@ export default {
             radius: '50%',
             center: ['50%', '60%'],
             data: [
-              { value: 335, name: '基金' },
-              { value: 310, name: '股票' },
-              { value: 234, name: '债券' },
-              { value: 135, name: '储蓄' },
-              { value: 1548, name: '期货' },
+              { value: props.saleTotal[0], name: props.name1[0] },
+              { value: props.saleTotal[1], name: props.name1[1] },
+              { value: props.saleTotal[2], name: props.name1[2] },
+              { value: props.saleTotal[3], name: props.name1[3] },
+              { value: props.saleTotal[4], name: props.name1[4] },
+              { value: props.saleTotal[5], name: props.name1[5] },
+              { value: props.saleTotal[6], name: props.name1[6] },
+              { value: props.saleTotal[7], name: props.name1[7] },
+              { value: props.saleTotal[8], name: props.name1[8] },
+              { value: props.saleTotal[9], name: props.name1[9] },
+              // { value: 335, name: '基金' },
+              // { value: 310, name: '股票' },
+              // { value: 234, name: '债券' },
+              // { value: 135, name: '储蓄' },
+              // { value: 1548, name: '期货' },
             ],
             itemStyle: {
               emphasis: {
@@ -49,18 +60,18 @@ export default {
           },
         ],
       }
-      myChart.setOption(readyBin1Option);
-      window.onresize = myChart.resize;
-    });
+      myChart.setOption(readyBin1Option)
+      window.onresize = myChart.resize
+    })
 
     onUnmounted(() => {
       if (!myChart) {
-        return;
+        return
       }
-      myChart.dispose();
-      myChart = null;
+      myChart.dispose()
+      myChart = null
     })
-  }
+  },
   // data() {
   //   return {
   //     myChart: null,
