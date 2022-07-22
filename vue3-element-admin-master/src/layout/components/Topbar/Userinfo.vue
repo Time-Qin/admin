@@ -83,7 +83,7 @@ export default defineComponent({
     const router = useRouter()
 
     const { userinfo } = useUserinfo()
-    const uimg = computed(()=>store.state.account.userImag||'');
+    const uimg = computed(() => store.state.account.userImag || '')
     // 退出
     const logout = () => {
       // 清除token

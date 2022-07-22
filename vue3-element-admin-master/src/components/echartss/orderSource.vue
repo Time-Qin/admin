@@ -4,13 +4,13 @@
 
 <script>
 import * as echarts from 'echarts'
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue'
 
 export default {
   setup() {
-    let myChart;
+    let myChart
     onMounted(() => {
-      myChart = echarts.init(document.getElementById('orderSource'));
+      myChart = echarts.init(document.getElementById('orderSource'))
       let redyBin2Option = {
         title: {
           text: '用户投资途径',
@@ -100,18 +100,17 @@ export default {
           },
         ],
       }
-      myChart.setOption(redyBin2Option);
-      window.onresize = myChart.resize;
-    }
-    );
+      myChart.setOption(redyBin2Option)
+      window.onresize = myChart.resize
+    })
     onUnmounted(() => {
       if (!myChart) {
-        return;
+        return
       }
-      myChart.dispose();
-      myChart = null;
+      myChart.dispose()
+      myChart = null
     })
-  }
+  },
 
   // data() {
   //   return {
@@ -243,4 +242,3 @@ export default {
   // },
 }
 </script>
-

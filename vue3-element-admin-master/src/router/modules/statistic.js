@@ -12,8 +12,8 @@ export default [
       {
         path: 'index',
         name: 'uindex3',
-        component: () => import('@/views/statistic/index.vue')
-      }
+        component: () => import('@/views/statistic/index.vue'),
+      },
     ],
   },
 ]

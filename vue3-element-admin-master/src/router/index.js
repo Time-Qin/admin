@@ -39,7 +39,13 @@ import products from './modules/products'
 import statistic from './modules/statistic'
 /* 菜单栏的路由 */
 // 固定菜单
-export const fixedRoutes = [...home,...user,...orders,...products,...statistic]
+export const fixedRoutes = [
+  ...home,
+  ...user,
+  ...orders,
+  ...products,
+  ...statistic,
+]
 // 动态菜单
 export const asyncRoutes = [...test]
 

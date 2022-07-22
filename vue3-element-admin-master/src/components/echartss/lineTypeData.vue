@@ -4,12 +4,12 @@
 
 <script>
 import * as echarts from 'echarts'
-import { onMounted,onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue'
 export default {
   setup() {
-    let myChart;
+    let myChart
     onMounted(() => {
-      myChart = echarts.init(document.getElementById('lineTypeData'));
+      myChart = echarts.init(document.getElementById('lineTypeData'))
       let readyLineOption = {
         tooltip: {
           trigger: 'axis',
@@ -89,21 +89,20 @@ export default {
             data: [820, 932, 901, 934, 1290, 1330, 1320],
           },
         ],
-      };
-      myChart.setOption(readyLineOption);
+      }
+      myChart.setOption(readyLineOption)
       //根据网页窗口大小自适应改变图表大小
-      window.onresize = myChart.resize;
+      window.onresize = myChart.resize
 
       onUnmounted(() => {
         if (!myChart) {
           return
         }
-        myChart.dispose();
-        myChart = null;
+        myChart.dispose()
+        myChart = null
       })
     })
-
-  }
+  },
 
   // data() {
   //   return {
@@ -123,7 +122,7 @@ export default {
   // },
   // props: ['id'],
   // methods: {
-  //   
+  //
   // },
   // watch: {
   //   id: () => {
@@ -132,4 +131,3 @@ export default {
   // },
 }
 </script>
-

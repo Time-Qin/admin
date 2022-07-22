@@ -12,8 +12,8 @@ export default [
       {
         path: 'index',
         name: 'uindex2',
-        component: () => import('@/views/products/index.vue')
-      }
+        component: () => import('@/views/products/index.vue'),
+      },
     ],
   },
 ]

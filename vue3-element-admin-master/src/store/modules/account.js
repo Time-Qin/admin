@@ -16,7 +16,7 @@ export default {
   state: {
     userinfo: null,
     permissionList: [],
-    userImag:'',
+    userImag: '',
   },
   mutations: {
     // 保存用户信息
@@ -27,9 +27,9 @@ export default {
     clearUserinfo(state) {
       state.userinfo = null
     },
-    setUserImage(state,url){
-      state.userImag = url;
-    }
+    setUserImage(state, url) {
+      state.userImag = url
+    },
   },
   actions: {
     // 获取用户信息

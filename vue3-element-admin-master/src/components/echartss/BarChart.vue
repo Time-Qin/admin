@@ -1,18 +1,35 @@
 <template>
   <div>
-    <div id="barchart" style="width: 100%; height: 480px"></div>
+    <div id="barchart" style="width: 100%; height: 600px"></div>
   </div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
-import { onMounted, onUnmounted } from 'vue'
+import { nextTick, onMounted, onUnmounted, onUpdated } from 'vue'
 export default {
   props: ['name1', 'saleTotal'],
   setup(props) {
     let mychart
-    onMounted(() => {
+    console.log(props.name1, props.saleTotal)
+    onUpdated(() => {
       mychart = echarts.init(document.getElementById('barchart'))
+      // const nameList = props.name1
+      // const saleTotalList = props.saleTotal
+      let saleTotalArrList = []
+      var dataList = []
+      const nameArrList = []
+      for (let i in props.saleTotal) {
+        nameArrList.push(props.name1[i])
+        saleTotalArrList.push(props.saleTotal[i] / 1)
+      }
+
+      for (let i = 30; i < saleTotalArrList.length; i++) {
+        let a = {}
+        a.type = 'bar'
+        a.data = saleTotalArrList
+        dataList.push(a)
+      }
       const options = {
         tooltip: {
           trigger: 'axis',
@@ -23,15 +40,7 @@ export default {
         },
         //图例控件
         legend: {
-          data: props.name1,
-          //   data: [
-          //     '直接访问',
-          //     '邮件营销',
-          //     '联盟广告',
-          //     '视频广告',
-          //     '搜索引擎',
-          //     '百度',
-          //   ],
+          data: nameArrList,
         },
         //绘图区域
         grid: {
@@ -45,7 +54,7 @@ export default {
           {
             type: 'category',
             align: 'center',
-            data: props.name1,
+            data: nameArrList,
           },
         ],
         //y轴Wie数值轴
@@ -54,13 +63,7 @@ export default {
             type: 'value',
           },
         ],
-        series: [
-          {
-            name: '销量',
-            type: 'line',
-            data: props.saleTotal,
-          },
-        ],
+        series: dataList,
       }
       mychart.setOption(options)
       window.onresize = mychart.resize

@@ -1,13 +1,16 @@
 <template>
   <div>
+    <div>
+      <el-button type="primary" plain round @click="dangao">蛋糕</el-button>
+      <el-button type="primary" plain round @click="mianbao">面包</el-button>
+      <el-button type="primary" plain round @click="binggan">饼干</el-button>
+    </div>
     <section class="data_section">
       <el-row :gutter="10" class="row_list">
-        <el-col :span="24" v-if="name1 && saleTotal">
+        <el-col :span="24">
           <BarChart :name1="name1" :saleTotal="saleTotal" />
         </el-col>
-        <!-- </el-row> -->
-        <!-- <el-row :gutter="10" class="row_list"> -->
-        <el-col :span="16" v-if="name1 && saleTotal">
+        <el-col :span="24">
           <OrderChart :name1="name1" :saleTotal="saleTotal" />
         </el-col>
       </el-row>
@@ -27,33 +30,55 @@ export default defineComponent({
   setup() {
     const name1 = ref()
     const saleTotal = ref()
-    // const getMcakes = async () => {
-    //   const result = await GetRequest()
-    //   //   console.log(result)
-    // }
 
-    // const initMcake = async () => {
-    //   const result = await GetRequest1()
+    const dangao = () => {
+      const McakeTotal = async () => {
+        const result = await GetRequest2()
+        console.log(result)
+        if (result.code === 0) {
+          name1.value = result.data.data.map(item => item.name)
+          saleTotal.value = result.data.data.map(item => item.saleTotal)
+        }
+      }
+      McakeTotal()
+    }
+    dangao()
+
+    const binggan = () => {
+      const getBinggan = async () => {
+        const result = await GetRequest()
+        console.log(result)
+        if (result.code === 0) {
+          name1.value = result.data.data.map(item => item.name)
+          saleTotal.value = result.data.data.map(item => item.saleTotal)
+        }
+      }
+      getBinggan()
+    }
+
+    const mianbao = () => {
+      const mianbaoTotal = async () => {
+        const result = await GetRequest1()
+        console.log(result)
+        if (result.code === 0) {
+          name1.value = result.data.data.map(item => item.name)
+          saleTotal.value = result.data.data.map(item => item.saleTotal)
+        }
+      }
+      mianbaoTotal()
+    }
+    // const McakeTotal = async () => {
+    //   const result = await GetRequest2()
     //   //   console.log(result)
     //   if (result.code === 0) {
-    //     scene.value = result.data[0].scene
+    //     name1.value = result.data.data.map(item => item.name)
+    //     saleTotal.value = result.data.data.map(item => item.saleTotal)
     //   }
-    //   scene.value = scene.value.map(item => item.tname)
-    //   //   console.log(result.data[0].scene);
     // }
-
-    const McakeTotal = async () => {
-      const result = await GetRequest2()
-      //   console.log(result)
-      if (result.code === 0) {
-        name1.value = result.data.data.map(item => item.name)
-        saleTotal.value = result.data.data.map(item => item.saleTotal)
-      }
-    }
-    // getMcakes()
-    // initMcake()
-    McakeTotal()
-    return { name1, saleTotal }
+    // // getMcakes()
+    // // initMcake()
+    // McakeTotal()
+    return { name1, saleTotal, dangao, mianbao, binggan }
   },
 })
 </script>

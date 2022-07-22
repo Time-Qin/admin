@@ -16,17 +16,12 @@
 </template>
 
 <script>
-import { defineComponent,computed } from 'vue';
+import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
   name: 'home',
-  setup() {
-
-  },
+  setup() {},
 })
 </script>
 
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
